@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Image histogram</title>
+		<script src="../src/histogram.js"></script>
+	</head>
+	<body>
+		
+		<div id="result"></div>
+		<script>
+			var result = document.getElementById("result"), startTime;
+			function performanceMark(message, dom){
+				result.insertAdjacentHTML("beforeend", "<p>[" +(performance.now() - startTime).toFixed(2) + "ms] "+ message +"</p>" );
+				if (dom && dom instanceof Element) {
+					result.appendChild(dom);
+				}
+				startTime = performance.now();
+			}
+			
+			function mainTest(fileName){
+				startTime = performance.now();
+				
+				var img = new Image();
+				var histogram;
+				img.onload = function(){
+					performanceMark("Loaded image");
+					
+					histogram = Histogram.createFromImage( this, {
+						maxWidth: 2000
+					});
+					performanceMark("Retrieved image histogram");
+					
+					var canvas = document.createElement("canvas");
+					histogram.plotToCanvas(canvas, {
+						width: 600,
+						height: 300,
+						categories: {
+							red: {
+								lineWidth: 1,
+								fillStyle: "rgba(255, 128, 128, 0.4)",
+								strokeStyle: "rgba(220, 64, 64, 0.8)"
+							},
+							green: {
+								lineWidth: 1,
+								fillStyle: "rgba(128, 255, 128, 0.4)",
+								strokeStyle: "rgba(64, 220, 64, 0.8)"
+							},
+							blue: {
+								lineWidth: 1,
+								fillStyle: "rgba(128, 128, 255, 0.4)",
+								strokeStyle: "rgba(64, 64, 220, 0.8)"
+							}
+						}
+					});
+					
+					performanceMark("Plot histogram", canvas);
+				};
+				img.src = fileName;
+			}
+			
+			mainTest("./images/flower.jpg");
+		</script>
+	</body>
+</html>
