@@ -1,3 +1,4 @@
+!["histogram.js logo"](./logo.png)
 #histogram.js
 
 histogram.js is a pure JavaScript library that without any dependence. histogram.js is designed 
