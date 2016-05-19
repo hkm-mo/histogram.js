@@ -107,16 +107,11 @@
 		this.histogram = histogram;
 		this.context = canvas.getContext("2d");
 		
-		this.maxDataLength = 0;
 		this.categoryNameList = [];
 		if (config.categories) {
 			for (var catName in config.categories) {
 				if (config.categories.hasOwnProperty(catName)) {
-					var catData = histogram.getCategory(catName, true);
 					this.categoryNameList.push(catName);
-					if (catData.length > this.maxDataLength) {
-						this.maxDataLength = catData.length;
-					}
 				}
 			}
 		} else {
