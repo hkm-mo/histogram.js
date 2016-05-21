@@ -24,12 +24,12 @@
 				var img = new Image();
 				var histogram;
 				img.onload = function(){
-					performanceMark("Loaded image");
+					performanceMark("Loading image");
 					
 					histogram = Histogram.createFromImage( this, {
 						maxWidth: 2000
 					});
-					performanceMark("Retrieved image histogram");
+					performanceMark("Retrieving image histogram");
 					
 					var canvas = document.createElement("canvas");
 					histogram.plotToCanvas(canvas, {
@@ -54,7 +54,7 @@
 						}
 					});
 					
-					performanceMark("Plot histogram", canvas);
+					performanceMark("Ploting histogram", canvas);
 				};
 				img.src = fileName;
 			}
