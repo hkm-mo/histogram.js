@@ -155,6 +155,7 @@
 				this.context.lineTo(x, height);
 			}
 			this.context.stroke();
+			this.context.fill();
 		}
 	};
 	
