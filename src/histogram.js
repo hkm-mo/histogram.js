@@ -134,26 +134,29 @@
 			var catName = this.categoryNameList[i],
 				catConfig = this.config.categories[catName],
 				catData = this.histogram.getCategory(catName, true),
-				valStep = width / catData.length;
+				valStep = (width) / (catData.length-1),
+				x, y;
 			
+			this.context.beginPath();
 			this.context.moveTo(width, height);
 			this.context.lineWidth = catConfig.lineWidth;
 			this.context.fillStyle = catConfig.fillStyle;
 			this.context.strokeStyle = catConfig.strokeStyle;
 			
-			this.context.beginPath();
 			for (var value = catData.length - 1; value >= 0; value--) {
-				var frequency = catData[value],
-					y = height - frequency * frequencyStep,
-					x = value * valStep;
+				var frequency = catData[value];
+				y = height - frequency * frequencyStep,
+				x = value * valStep;
 				
 				this.context.lineTo(x, y);
-				
+			}
+			
+			if (x !== null) {
+				this.context.lineTo(x, height);
 			}
 			this.context.stroke();
 		}
 	};
-	
 	
 	window.Histogram = Histogram;
 	
