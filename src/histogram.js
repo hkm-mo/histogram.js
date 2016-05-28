@@ -98,6 +98,7 @@
 		return histogram;
 	};
 	
+	
 	function HistogramGraph(histogram, canvas, config) {
 		var canvasA = document.createElement("canvas");
 		canvas.width = config.width;
@@ -121,7 +122,7 @@
 		this.draw();
 	}
 	
-	HistogramGraph.prototype.draw = function(){
+	HistogramGraph.prototype.draw = function() {
 		var width = this.config.width,
 			height = this.config.height;
 		
