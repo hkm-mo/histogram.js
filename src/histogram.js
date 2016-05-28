@@ -130,6 +130,7 @@
 			frequencyStep = height / maxFrequency;
 		
 		this.context.clearRect(x, y, width, height);
+		this.context.globalCompositeOperation = "lighter";
 		
 		for (var i = this.categoryNameList.length - 1; i >= 0; i--) {
 			var catName = this.categoryNameList[i],
