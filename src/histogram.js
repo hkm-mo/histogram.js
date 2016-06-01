@@ -100,7 +100,6 @@
 	
 	
 	function HistogramGraph(histogram, canvas, config) {
-		var canvasA = document.createElement("canvas");
 		canvas.width = config.width;
 		canvas.height = config.height;
 		
